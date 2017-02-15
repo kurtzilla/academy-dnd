@@ -1,13 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
-import Layout from './components/Layout';
+import App from './components/App';
+// import Tweets from './components/Tweets';
 import store from './store';
-const app = document.getElementById('app');
+
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Layout />
-  </Provider>,
-  app);
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
+  document.getElementById('app'));

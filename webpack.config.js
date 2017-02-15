@@ -2,7 +2,15 @@ var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
 var path = require('path');
 
+// https://github.com/reactjs/react-redux/issues/6
+// order matters!
+
 module.exports = {
+  devServer: {
+    historyApiFallback: true,
+    contentBase: './js/client.js',
+    hot: true
+  },
   context: path.join(__dirname, "src"),
   devtool: debug ? "inline-sourcemap" : null,
   entry: "./js/client.js",
@@ -14,7 +22,7 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: ['react', 'es2015', 'stage-0'],
-          plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy'],
+          plugins: ['react-html-attrs', 'transform-decorators-legacy', 'transform-class-properties'],
         }
       }
     ]
